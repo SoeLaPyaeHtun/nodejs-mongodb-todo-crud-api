@@ -57,9 +57,22 @@ async function createTodo(req, res, next) {
     }
  }
 
+ async function deleteTodo(req, res, next){
+    try{
+        let deletedtodo = await todoService.deleteTodo(req.params['id'])
+        if(!deletedtodo) throw Error("deleting error")
+        await res.status(201).json(deletedtodo)
+    }catch(e){
+        await res.status(404).json({
+            error : e.message
+        })
+    }
+ }
+
 module.exports = {
     getAllTodos,
     getTodoById,
     createTodo,
-    updateTodo
+    updateTodo,
+    deleteTodo
 }

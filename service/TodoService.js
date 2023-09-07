@@ -19,9 +19,15 @@ async function updateTodo(todoId , todo){
     return updateTodo;
 }
 
+async function deleteTodo(_id){
+    let deletedTodo = await Todos.findByIdAndDelete(_id)
+    return deleteTodo;
+}
+
 module.exports = {
     getAllTodos,
     getTodobyId,
     createTodo,
-    updateTodo
+    updateTodo,
+    deleteTodo
 }
